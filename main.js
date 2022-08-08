@@ -1,37 +1,39 @@
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
-let mainWindow
+let mainWindow;
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
-    }
-  })
+      nodeIntegration: true,
+    },
+    icon: path.join(__dirname, "icon.png"),
+  });
 
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile("index.html");
 
-  mainWindow.on('closed', function () {
-    mainWindow = null
-  })
+  mainWindow.on("closed", function () {
+    mainWindow = null;
+  });
 }
 
-app.on('ready', createWindow)
+app.on("ready", createWindow);
 
-app.on('resize', function(e,x,y){
+app.on("resize", function (e, x, y) {
   mainWindow.setSize(x, y);
 });
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});
 
-app.on('activate', function () {
+app.on("activate", function () {
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
