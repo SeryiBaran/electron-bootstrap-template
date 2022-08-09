@@ -11,6 +11,9 @@ function createWindow() {
       nodeIntegration: true,
     },
     icon: path.join(__dirname, "icon.png"),
+    autoHideMenuBar: true,
+    transparent: true,
+    // frame: false
   });
 
   mainWindow.loadFile("index.html");
